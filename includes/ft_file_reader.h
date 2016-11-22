@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_file_reader.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 16:54:31 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/22 17:26:56 by mgautier         ###   ########.fr       */
+/*   Created: 2016/11/08 13:19:09 by mgautier          #+#    #+#             */
+/*   Updated: 2016/11/08 19:10:52 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#ifndef FT_FILE_READER_H
+# define FT_FILE_READER_H
 
-# include "libft,h"
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include "ft_string.h"
 
-typedef			e_bool
-{
-	EMPTY = 0,
-	FULL = !EMPTY,
-}				t_bool;
+# define BUF_SIZE 20
 
-typedef t_bool	t_shape[4][4];
-
-typedef struct	s_tetris
-{
-	char		id;
-	size_t		shape;
-	t_point		position;
-}				t_tetris;
+int	open_close_file(char *str);
+int	read_file(int file_descriptor);
 
 #endif
