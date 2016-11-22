@@ -2,6 +2,7 @@
 Parser :
 Creer un tableau/ une liste pour stocker l'ensemble des pieces tetris possible
 On compare ensuite chacune des pieces entrees avec cette liste afin de determiner les pieces entrees
+Il faut lire l'entre piece par piece. Error dans
 
 Possibilite de d'eliminer certaines tuiles au fur et a mesure.
 >> Trier le tableau pour faciliter la comparaison.
