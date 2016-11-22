@@ -33,7 +33,12 @@ Procedure :
  Appel recursif/iteratif possibilites decoulantes
  Effacer en fonction du mouvement.
 
-
+Suggestion d'opti :
+des que la solution depasse l'optimale, stocker la possibilite et ne pas l'explorer.
+Y revenir une fois qu'aucune solution opti n'a ete trouve
+Exemple :
+Si le meilleur est 6 de cote, des qu'un arbre de possibilites depasse six, on stoppe l'exploration et on stock l'etape dans une liste (liste 7)
+si aucune possibilite a 6 n'est trouve, on explore toute la liste des possbilites a 7, en excluant les 8, et ainsi de suite.
 
 
  Affichage :
