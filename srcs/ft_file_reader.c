@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 17:16:18 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/22 17:55:23 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/23 12:23:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_list		*ft_cut_tetriminos(int file_descriptor)
 		if (oct_read == -1)
 			ft_error(READ_ERROR);
 		buffer[oct_read] = '\0';
-		last_block = ft_add_end_list(end_list, buffer, oct_read);
+		last_block = ft_add_end_list(end_list, buffer, oct_read + 1);
 		if (last_block == NULL)
 			ft_error(NOT_ENOUGH_MEMORY);
 		if (first_block == NULL)
