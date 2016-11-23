@@ -6,11 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 17:16:18 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/23 12:23:20 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/23 13:03:29 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_file_reader.h"
+#include "libft.h"
 
 int		open_close_file(char *str)
 {
@@ -54,3 +55,12 @@ t_list		*ft_cut_tetriminos(int file_descriptor)
 	}
 	return (first_block);
 }
+
+t_bool		*ft_validate_block(t_list *entry)
+{
+	if (ContainsInvalidChars((char*)entry->content))
+		return (FALSE);
+	else
+		return (TRUE);
+}
+
