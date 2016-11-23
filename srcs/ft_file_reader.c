@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 17:16:18 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/23 13:03:29 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/23 15:22:27 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,17 @@ t_list		*ft_cut_tetriminos(int file_descriptor)
 	return (first_block);
 }
 
-t_bool		*ft_validate_block(t_list *entry)
+t_bool		ft_validate_block(t_list *entry)
 {
 	if (ContainsInvalidChars((char*)entry->content))
+		return (FALSE);
+	else
+		return (TRUE);
+}
+
+t_bool		ft_entry_is_valid(t_list *entry_list)
+{
+	if (ft_lstcheck(entry_list, &ft_validate_block) != 0)
 		return (FALSE);
 	else
 		return (TRUE);
