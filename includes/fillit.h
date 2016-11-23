@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 16:54:31 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/21 17:13:50 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/23 14:26:55 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 # define FILLIT_H
 
 # include "libft,h"
-
-typedef		e_bool{
-	EMPTY = 0,
-	FULL = !EMPTY,
-}			t_bool;
-
-typedef t_bool	t_shape[4][4];
 
 typedef struct	s_tetris{
 	char		id;
