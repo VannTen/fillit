@@ -1,6 +1,5 @@
-test
 *.vim
 *~
 *.o
 *.a
-
+libft/test
