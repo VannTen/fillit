@@ -6,7 +6,7 @@
 /*   By: ljeanner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:24:13 by ljeanner          #+#    #+#             */
-/*   Updated: 2016/11/24 18:26:56 by ljeanner         ###   ########.fr       */
+/*   Updated: 2016/11/24 19:21:37 by ljeanner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,24 @@ static t_point *GetHashLocations(char *str, t_point *hash_array, int i)
 	j = -1;
 	x = 0;
 	y = 0;
+	printf("%s", str);
 	while (str[++j])
 	{
 		if (str[j] == '#')
 		{
 			hash_array[i].x = x;
 			hash_array[i].y = y;
+			printf("Attributing values to hash_array[%d] [%d][%d]\n", i, hash_array[i].x, hash_array[i].y);
 			i++;
 		}
-		if ((j % 5) == 0)
+		x++;
+		if (j == 4 || j == 9 || j == 14 || j == 19)
 		{
 			if (str[j] != '\n')
 				return (NULL);
 			x = 0;
 			y++;
 		}
-		x++;
 	}
 	return (hash_array);
 }
@@ -77,6 +79,7 @@ static t_bool IsHashAlone(t_point *loc)
 	i = 0;
 	while (i < 3)
 	{
+		printf("Comparing loc[%lu].[%d][%d] with loc[%lu].[%d][%d]\n", i, loc[i].x,loc[i].y, i +1, loc[i+1].x, loc[i+1].y);
 		if (ABS(loc[i].x - loc[i+1].x) > 1)
 			return (TRUE);
 		else if (ABS(loc[i].y - loc[i+1].y) > 1)
@@ -107,13 +110,17 @@ t_tetris *CreateTetris(char *str, char id)
 	i = 0;
 	if (!(hash_locations = GetHashLocations(str, hash_locations, i)))
 		return (NULL);
-	if (IsHashAlone(hash_locations))
+	if (IsHashAlone(hash_locations) == TRUE)
+	{
+		printf("Invalid tetriminos.\n");
 		return (NULL);
+	}
 	if (!(tetris = (t_tetris *)malloc(sizeof(*tetris))))
 		return (NULL);
 	tetris->id = id;
-	while (i < 3)
+	while (i < 4)
 	{
+		printf("Adding to tetris->row[%d] [%d][%d]\n", i, hash_locations[i].x, hash_locations[i].y);
 		tetris->row[hash_locations[i].x][hash_locations[i].y] = '#';
 		i++;
 	}

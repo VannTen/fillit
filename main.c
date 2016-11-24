@@ -6,7 +6,7 @@
 /*   By: ljeanner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 17:50:58 by ljeanner          #+#    #+#             */
-/*   Updated: 2016/11/24 18:26:47 by ljeanner         ###   ########.fr       */
+/*   Updated: 2016/11/24 19:21:38 by ljeanner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int		main(void)
 {
-	char		*str = "####\n....\n....\n....\n";
+	char		*str = "....\n....\n..##\n..##\n";
 	t_tetris	*tetris;
 	int			x;
 	int			y;
 	int			length;
 
+	x = 0;
+	y = 0;
 	length = 0;
 	if (ContainsInvalidChars(str) == FALSE)
 	{
@@ -28,17 +30,19 @@ int		main(void)
 		{
 			printf("CreateTetris throws an Exception\n");
 			free(tetris);
+			return (0);
 		}
 	}
 	else
 		printf("ContainsInvalidChars throws an Exception\n");
 	while (length < 16)
 	{
-		if (tetris->row[x][y])
-			printf("x:[%d] | y:[%d]", x, y);
-		x++;
-		y++;
-		length++;
+		for (int y = 0; y < 4; y++)
+		{
+			for(int x = 0; x < 4; x++, length++)
+				if (tetris->row[x][y] == '#')
+					printf("x:[%d] | y:[%d]\n", x, y);
+		}
 	}
 	return (0);
 }
