@@ -6,15 +6,13 @@
 /*   By: ljeanner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:24:13 by ljeanner          #+#    #+#             */
-/*   Updated: 2016/11/23 13:00:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:40:42 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "fillit.h"
-#define ABS(x) ((x > 0) ? x : -(x))
+#include "ft_checker.h"
 
-static t_bool ContainsInvalidChars(char *str)
+t_bool ContainsInvalidChars(char *str)
 {
 	char	*tmp;
 	size_t	p_count;
