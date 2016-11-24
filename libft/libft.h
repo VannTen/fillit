@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 15:51:07 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/23 13:13:28 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/24 13:06:22 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_add_end_list(t_list *last_link, const void *content,
 									size_t content_size);
-unsigned int		ft_check_list(t_list list, t_bool (*f)(t_list *elem));
+unsigned int		ft_lstcheck(t_list *list, t_bool (*f)(t_list *elem));
 
 #endif
