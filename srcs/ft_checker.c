@@ -6,7 +6,7 @@
 /*   By: ljeanner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:24:13 by ljeanner          #+#    #+#             */
-/*   Updated: 2016/11/24 12:40:42 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/24 17:16:48 by ljeanner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,31 @@ t_bool ContainsInvalidChars(char *str)
 	return (FALSE);
 }
 
-static t_point *GetHashLocations(char *str)
+static t_point *GetHashLocations(char *str, t_point *hash_array, int i)
 {
-	char	*tmp;
-	int		i;
+	int		j;
 	int		x;
 	int		y;
-	t_point	*hash_array;
 
-	tmp = str;
-	i = 0;
+	j = -1;
 	x = 0;
 	y = 0;
-	if (!(hash_array = (t_point *)malloc(sizeof(t_point) * 4)))
-		return (NULL);
-	while (*tmp)
+	while (str[++j])
 	{
-		if (*tmp == '#')
+		if (str[j] == '#')
 		{
 			hash_array[i].x = x;
 			hash_array[i].y = y;
 			i++;
 		}
-		if ((i % 5) == 0 && *tmp == '\n')
+		if ((j % 5) == 0)
 		{
+			if (str[j] != '\n')
+				return (NULL);
 			x = 0;
 			y++;
 		}
-		tmp++;
+		x++;
 	}
 	return (hash_array);
 }
@@ -94,13 +91,26 @@ static t_bool IsHashAlone(t_point *loc)
 	return (FALSE);
 }
 
-static t_bool IsValidShape(char *str)
+static t_tetris CreateTetris(char *str, char id)
 {
-	t_point *hash_locations;
+	t_point		*hash_locations;
+	t_tetris	tetris;
+	int			i;
 
-	hash_locations = GetHashLocations(str);
-	if (!IsHashAlone(hash_locations))
+	if (!(hash_locations = (t_point *)malloc(sizeof(t_point) * 4)))
+		return (NULL);
+	i = 0;
+	if (!(hash_locations = GetHashLocations(str, hash_locations, i)))
+		return (NULL);
+	if (IsHashAlone(hash_locations))
+		return (NULL);
+	if (!(tetris = (t_point *)malloc(sizeof(t_tetris))))
+		return (NULL);
+	tetris.id = id;
+	while (i < 3)
 	{
-		// Pas de # tout seul
+		tetris.row[hash_locations[i].x][hash_locations[i].y] = '#';
+		i++;
 	}
+	return (tetris);
 }
