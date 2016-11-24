@@ -6,20 +6,22 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 17:16:18 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/23 15:22:27 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/24 13:29:06 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_file_reader.h"
-#include "libft.h"
 
-int		open_close_file(char *str)
+t_list		*open_close_file(char *str)
 {
-	int file_descriptor;
+	int		file_descriptor;
+	t_list	*entry;
 
 	file_descriptor = open(str, O_RDONLY);
-	read_file(file_descriptor);
-	return (close(file_descriptor));
+	entry = ft_cut_tetriminos(file_descriptor);
+	if (close(file_descriptor) == -1)
+		return (NULL);
+	return (entry);
 }
 
 /*
@@ -47,7 +49,7 @@ t_list		*ft_cut_tetriminos(int file_descriptor)
 		if (oct_read == -1)
 			ft_error(READ_ERROR);
 		buffer[oct_read] = '\0';
-		last_block = ft_add_end_list(end_list, buffer, oct_read + 1);
+		last_block = ft_add_end_list(last_block, buffer, oct_read + 1);
 		if (last_block == NULL)
 			ft_error(NOT_ENOUGH_MEMORY);
 		if (first_block == NULL)
@@ -55,7 +57,7 @@ t_list		*ft_cut_tetriminos(int file_descriptor)
 	}
 	return (first_block);
 }
-
+/*
 t_bool		ft_validate_block(t_list *entry)
 {
 	if (ContainsInvalidChars((char*)entry->content))
@@ -71,4 +73,4 @@ t_bool		ft_entry_is_valid(t_list *entry_list)
 	else
 		return (TRUE);
 }
-
+*/
