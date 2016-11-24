@@ -6,11 +6,12 @@
 /*   By: ljeanner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:24:13 by ljeanner          #+#    #+#             */
-/*   Updated: 2016/11/24 17:16:48 by ljeanner         ###   ########.fr       */
+/*   Updated: 2016/11/24 18:26:56 by ljeanner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_checker.h"
+#include "../includes/fillit.h"
+#include "../includes/ft_checker.h"
 
 t_bool ContainsInvalidChars(char *str)
 {
@@ -81,20 +82,24 @@ static t_bool IsHashAlone(t_point *loc)
 		else if (ABS(loc[i].y - loc[i+1].y) > 1)
 			return (TRUE);
 		else if (loc[i].x != loc[i+1].x)
+		{
 			if (loc[i].y != loc[i+1].y)
 				return (TRUE);
+		}
 		else if (loc[i].y != loc[i+1].y)
+		{
 			if (loc[i].x != loc[i+1].x)
 				return (TRUE);
+		}
 		i++;
 	}
 	return (FALSE);
 }
 
-static t_tetris CreateTetris(char *str, char id)
+t_tetris *CreateTetris(char *str, char id)
 {
 	t_point		*hash_locations;
-	t_tetris	tetris;
+	t_tetris	*tetris;
 	int			i;
 
 	if (!(hash_locations = (t_point *)malloc(sizeof(t_point) * 4)))
@@ -104,12 +109,12 @@ static t_tetris CreateTetris(char *str, char id)
 		return (NULL);
 	if (IsHashAlone(hash_locations))
 		return (NULL);
-	if (!(tetris = (t_point *)malloc(sizeof(t_tetris))))
+	if (!(tetris = (t_tetris *)malloc(sizeof(*tetris))))
 		return (NULL);
-	tetris.id = id;
+	tetris->id = id;
 	while (i < 3)
 	{
-		tetris.row[hash_locations[i].x][hash_locations[i].y] = '#';
+		tetris->row[hash_locations[i].x][hash_locations[i].y] = '#';
 		i++;
 	}
 	return (tetris);
