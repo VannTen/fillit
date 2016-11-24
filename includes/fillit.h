@@ -6,23 +6,22 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 16:54:31 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/22 17:26:56 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/24 13:10:21 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# include "libft,h"
-
-typedef			e_bool
-{
-	EMPTY = 0,
-	FULL = !EMPTY,
-}				t_bool;
+# include "libft.h"
+# include <stdlib.h>
 
 typedef t_bool	t_shape[4][4];
-
+typedef struct	s_point
+{
+	int x;
+	int y;
+}				t_point;
 typedef struct	s_tetris
 {
 	char		id;
