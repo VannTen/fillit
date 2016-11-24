@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 16:54:31 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/24 13:10:21 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/24 17:15:06 by ljeanner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft.h"
 # include <stdlib.h>
 
-typedef t_bool	t_shape[4][4];
 typedef struct	s_point
 {
 	int x;
@@ -25,8 +24,8 @@ typedef struct	s_point
 typedef struct	s_tetris
 {
 	char		id;
-	size_t		shape;
-	t_point		position;
+	char		row[4][4];
+	t_point		pos;
 }				t_tetris;
 
 #endif
