@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/04 13:12:11 by mgautier          #+#    #+#             *#
-#*   Updated: 2016/11/24 15:21:00 by mgautier         ###   ########.fr       *#
+#*   Updated: 2016/11/24 16:47:39 by mgautier         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -25,7 +25,7 @@ PART_2 = ft_memalloc.o ft_memdel.o ft_strnew.o ft_strdel.o ft_strclr.o \
 		 ft_itoa.o ft_putchar.o ft_putstr.o ft_putendl.o ft_putnbr.o \
 		 ft_putchar_fd.o ft_putstr_fd.o ft_putnbr_fd.o ft_putendl_fd.o
 PART_3 = ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o \
-		 ft_lstmap.o ft_lstcheck.o
+		 ft_lstmap.o ft_lstcheck.o ft_add_end_list.o
 TEST_OBJ = main.o tests.o list_test.o
 TEST_NAME = my_test
 SRC_DIR = .
