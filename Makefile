@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/24 14:11:20 by mgautier          #+#    #+#             *#
-#*   Updated: 2016/11/24 18:41:02 by mgautier         ###   ########.fr       *#
+#*   Updated: 2016/11/25 14:37:01 by                  ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -33,7 +33,7 @@ export ARFLAGS = rc
 export CC = gcc
 export CFLAGS = -Wall -Wextra -Werror
 export RM = rm -Rf
-CPPFLAGS = -I $(INC_PATH) -I $(LIB_PATH)
+CPPFLAGS = -iquote $(INC_PATH) -iquote $(LIB_PATH)
 LDLIBS = -l$(LIB_NAME)
 LDFLAGS = -L$(LIB_PATH)
 
@@ -46,14 +46,17 @@ vpath %.a $(LIB_PATH)
 
 # Special targets
 
-.PHONY: all clean fclean re libclean
+.PHONY: all clean fclean re libclean $(LDLIBS)
+
+.SECONDARY: $(OBJ)
 
 # Mandatory rules
 
-all: $(NAME)
+all: $(LDLIBS) $(NAME) 
 
 clean: 
 	$(RM) $(OBJ_PATH) 2> /dev/null || true
+	$(RM) $(OBJ)
 
 fclean: clean libclean
 	$(RM) $(NAME)
@@ -62,17 +65,15 @@ re: fclean all
 
 # Explicit rules
 
-$(NAME): $(LDLIBS) $(OBJ)
-	$(CC) $(LDFLAGS)  $^ -o $@
+$(NAME): $(OBJ) | $(OBJ_PATH)
+	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
+	mv -t $| $^
 
 $(LDLIBS):
 	$(MAKE) -C $(LIB_PATH)
 
+$(OBJ_PATH):
+	mkdir $@
+
 libclean:
 	$(MAKE) $(MAKECMDGOALS) -C $(LIB_PATH)
-
-# Implicit rules
-
-%.o: %.c %.h
-	mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $(OBJ_PATH)/$@ $<
