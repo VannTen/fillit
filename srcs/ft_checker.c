@@ -6,12 +6,33 @@
 /*   By: ljeanner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:24:13 by ljeanner          #+#    #+#             */
-/*   Updated: 2016/11/24 19:21:37 by ljeanner         ###   ########.fr       */
+/*   Updated: 2016/11/25 18:10:35 by ljeanner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fillit.h"
 #include "../includes/ft_checker.h"
+
+const char *patterns_arr[MAX_PATTERNS] = {
+	"###...#.........",
+	".#...#..##......",
+	"#...###.........",
+	"##..#...#.......",
+	"###.#...........",
+	"##...#...#......",
+	"..#.###.........",
+	"#...#...##......",
+	"###..#..........",
+	".#..##...#......",
+	".#..###.........",
+	"#...##..#.......",
+	".##.##..........",
+	"#...##...#......",
+	"##...##.........",
+	".#..##..#.......",
+	"####............",
+	"#...#...#...#...",
+	"##..##.........."
+};
 
 t_bool ContainsInvalidChars(char *str)
 {
@@ -50,14 +71,12 @@ static t_point *GetHashLocations(char *str, t_point *hash_array, int i)
 	j = -1;
 	x = 0;
 	y = 0;
-	printf("%s", str);
 	while (str[++j])
 	{
 		if (str[j] == '#')
 		{
 			hash_array[i].x = x;
 			hash_array[i].y = y;
-			printf("Attributing values to hash_array[%d] [%d][%d]\n", i, hash_array[i].x, hash_array[i].y);
 			i++;
 		}
 		x++;
@@ -72,28 +91,44 @@ static t_point *GetHashLocations(char *str, t_point *hash_array, int i)
 	return (hash_array);
 }
 
-static t_bool IsHashAlone(t_point *loc)
+static char *GetPattern(char *str)
 {
-	size_t	i;
+	int		i;
+	int		j;
+	int		hash_count;
+	char	*pattern;
 
 	i = 0;
-	while (i < 3)
+	j = 0;
+	hash_count = 0;
+	pattern = ft_strnew(16);
+	while (str[i] != '#')
+		i++;
+	while (str[i] && hash_count < 4)
 	{
-		printf("Comparing loc[%lu].[%d][%d] with loc[%lu].[%d][%d]\n", i, loc[i].x,loc[i].y, i +1, loc[i+1].x, loc[i+1].y);
-		if (ABS(loc[i].x - loc[i+1].x) > 1)
-			return (TRUE);
-		else if (ABS(loc[i].y - loc[i+1].y) > 1)
-			return (TRUE);
-		else if (loc[i].x != loc[i+1].x)
+		if (str[i] != '\n')
 		{
-			if (loc[i].y != loc[i+1].y)
-				return (TRUE);
+			pattern[j] = str[i];
+			if (str[i] == '#')
+				hash_count++;
+			j++;
 		}
-		else if (loc[i].y != loc[i+1].y)
-		{
-			if (loc[i].x != loc[i+1].x)
-				return (TRUE);
-		}
+		i++;
+	}
+	while (j < 16)
+		pattern[j++] = '.';
+	return (pattern);
+}
+
+static t_bool CheckValidPattern(char *pattern)
+{
+	int		i;
+
+	i = 0;
+	while (i < MAX_PATTERNS)
+	{
+		if (ft_strequ(pattern, patterns_arr[i]))
+			return (TRUE);
 		i++;
 	}
 	return (FALSE);
@@ -103,18 +138,24 @@ t_tetris *CreateTetris(char *str, char id)
 {
 	t_point		*hash_locations;
 	t_tetris	*tetris;
+	char		*pattern;
 	int			i;
 
 	if (!(hash_locations = (t_point *)malloc(sizeof(t_point) * 4)))
 		return (NULL);
 	i = 0;
-	if (!(hash_locations = GetHashLocations(str, hash_locations, i)))
-		return (NULL);
-	if (IsHashAlone(hash_locations) == TRUE)
+	if (!(pattern = GetPattern(str)))
 	{
-		printf("Invalid tetriminos.\n");
+		printf("Invalid entry.\n");
 		return (NULL);
 	}
+	if (!(CheckValidPattern(pattern)))
+	{
+		printf("Invalid pattern.\n");
+		return (NULL);
+	}
+	if (!(hash_locations = GetHashLocations(str, hash_locations, 0)))
+		return (NULL);
 	if (!(tetris = (t_tetris *)malloc(sizeof(*tetris))))
 		return (NULL);
 	tetris->id = id;

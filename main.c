@@ -6,7 +6,7 @@
 /*   By: ljeanner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 17:50:58 by ljeanner          #+#    #+#             */
-/*   Updated: 2016/11/24 19:21:38 by ljeanner         ###   ########.fr       */
+/*   Updated: 2016/11/25 18:15:25 by ljeanner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		main(void)
 {
-	char		*str = "....\n....\n..##\n..##\n";
+	char		*str = "..3.\n.2..\n....\n..1#\n";
 	t_tetris	*tetris;
 	int			x;
 	int			y;
@@ -23,6 +23,7 @@ int		main(void)
 	x = 0;
 	y = 0;
 	length = 0;
+	printf("Testing the following pattern :\n%s", str);
 	if (ContainsInvalidChars(str) == FALSE)
 	{
 		printf("ContainsInvalidChars == FALSE\n");
@@ -32,10 +33,15 @@ int		main(void)
 			free(tetris);
 			return (0);
 		}
+		else
+			printf("Pattern is valid !\nSuccesfully created the tetriminos\n");
 	}
 	else
+	{
 		printf("ContainsInvalidChars throws an Exception\n");
-	while (length < 16)
+		return (0);
+	}
+		while (length < 16)
 	{
 		for (int y = 0; y < 4; y++)
 		{
