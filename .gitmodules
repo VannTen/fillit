@@ -1,0 +1,3 @@
+[submodule "Tetriminos-generator"]
+	path = Tetriminos-generator
+	url = https://github.com/hqro/Tetriminos-generator.git
