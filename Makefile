@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/24 14:11:20 by mgautier          #+#    #+#             *#
-#*   Updated: 2016/11/25 14:44:47 by                  ###   ########.fr       *#
+#*   Updated: 2016/11/25 16:42:09 by                  ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -57,8 +57,8 @@ vpath %.a $(LIB_PATH)
 all: $(LDLIBS) $(NAME) 
 
 clean: 
-	$(RM) $(OBJ_PATH) 2> /dev/null || true
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ_PATH) 2> /dev/null || true
+	@$(RM) $(OBJ)
 
 fclean: clean libclean
 	$(RM) $(NAME)
