@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/24 14:11:20 by mgautier          #+#    #+#             *#
-#*   Updated: 2016/11/25 16:42:09 by                  ###   ########.fr       *#
+#*   Updated: 2016/11/25 17:52:44 by                  ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -69,7 +69,7 @@ re: fclean all
 
 $(NAME): $(OBJ) | $(OBJ_PATH)
 	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
-	mv -t $| $^
+	mv -f -t $| $^
 
 $(LDLIBS):
 	$(MAKE) -C $(LIB_PATH)
