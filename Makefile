@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/24 14:11:20 by mgautier          #+#    #+#             *#
-#*   Updated: 2016/11/25 14:37:01 by                  ###   ########.fr       *#
+#*   Updated: 2016/11/25 14:44:47 by                  ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -14,13 +14,15 @@
 
 NAME = fillit
 LIB_NAME = ft
-SRC = $(PARSER_SRC)
+SRC = $(PARSER_SRC) $(TEST_SRC)
 PARSER_SRC = ft_file_reader.c ft_error.c
+TEST_SRC = maintest.c ft_test.c
 LIB_PATH = libft
 
 # Unchanged variables
 
 SRC_PATH = srcs
+TEST_PATH = test
 OBJ = $(SRC:.c=.o)
 OBJ_PATH = bin
 INC_PATH = includes
@@ -40,7 +42,7 @@ LDFLAGS = -L$(LIB_PATH)
 # V paths
 
 vpath %.h $(INC_PATH)
-vpath %.c $(SRC_PATH)
+vpath %.c $(SRC_PATH) $(TEST_PATH)
 vpath %.o $(OBJ_PATH)
 vpath %.a $(LIB_PATH)
 
