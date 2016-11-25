@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/24 14:11:20 by mgautier          #+#    #+#             *#
-#*   Updated: 2016/11/25 12:12:45 by                  ###   ########.fr       *#
+#*   Updated: 2016/11/25 16:40:26 by                  ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -55,8 +55,8 @@ vpath %.a $(LIB_PATH)
 all: $(LDLIBS) $(NAME) 
 
 clean: 
-	$(RM) $(OBJ_PATH) 2> /dev/null || true
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ_PATH) 2> /dev/null || true
+	@$(RM) $(OBJ)
 
 fclean: clean libclean
 	$(RM) $(NAME)
@@ -77,7 +77,3 @@ $(OBJ_PATH):
 
 libclean:
 	$(MAKE) $(MAKECMDGOALS) -C $(LIB_PATH)
-
-# Implicit rules
-
-%.o: %.c $(OBJ_PATH)
