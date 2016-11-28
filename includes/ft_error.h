@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 12:18:35 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/24 13:16:06 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/28 12:12:43 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef enum	e_error
 {
 	READ_ERROR,
 	NOT_ENOUGH_MEMORY,
+	INVALID_ENTRY,
 }				t_error;
 
 void	ft_error(t_error value);
