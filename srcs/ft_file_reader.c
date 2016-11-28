@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 17:16:18 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/24 13:29:06 by mgautier         ###   ########.fr       */
+/*   Updated: 2016/11/28 11:13:09 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ t_list		*open_close_file(char *str)
 	entry = ft_cut_tetriminos(file_descriptor);
 	if (close(file_descriptor) == -1)
 		return (NULL);
-	return (entry);
+	if (ft_entry_is_valid(entry))
+		return (entry);
+	else
+		ft_error(INVALID_ENTRY);
 }
 
 /*
@@ -57,20 +60,3 @@ t_list		*ft_cut_tetriminos(int file_descriptor)
 	}
 	return (first_block);
 }
-/*
-t_bool		ft_validate_block(t_list *entry)
-{
-	if (ContainsInvalidChars((char*)entry->content))
-		return (FALSE);
-	else
-		return (TRUE);
-}
-
-t_bool		ft_entry_is_valid(t_list *entry_list)
-{
-	if (ft_lstcheck(entry_list, &ft_validate_block) != 0)
-		return (FALSE);
-	else
-		return (TRUE);
-}
-*/
