@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_file_reader.h                                   :+:      :+:    :+:   */
+/*   ft_validate.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 13:19:09 by mgautier          #+#    #+#             */
-/*   Updated: 2016/11/28 12:05:13 by mgautier         ###   ########.fr       */
+/*   Created: 2016/11/28 11:17:00 by mgautier          #+#    #+#             */
+/*   Updated: 2016/11/28 12:11:27 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FILE_READER_H
-# define FT_FILE_READER_H
+#ifndef FT_VALIDATE_H
+# define FT_VALIDATE_H
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include "fillit.h"
+# include "libft.h"
 # include "ft_checker.h"
-# include "ft_error.h"
-# include "ft_validate.h"
 
-# define BUF_SIZE 21
+typedef t_bool	(*t_validation)(t_list *entry);
 
-/*
-** Functions
-*/
-
-t_list	*open_close_file(char *str);
-t_list	*ft_cut_tetriminos(int file_descriptor);
+t_bool	ft_validate_block(t_list *entry);
+t_bool	ft_entry_is_valid(t_list *entry_list);
 
 #endif
