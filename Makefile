@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/24 14:11:20 by mgautier          #+#    #+#             *#
-#*   Updated: 2016/11/25 17:49:42 by                  ###   ########.fr       *#
+#*   Updated: 2016/11/28 12:04:19 by mgautier         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -15,7 +15,7 @@
 NAME = fillit
 LIB_NAME = ft
 SRC = $(PARSER_SRC)
-PARSER_SRC = ft_file_reader.c ft_error.c
+PARSER_SRC = ft_file_reader.c ft_error.c ft_validate.c ft_checker.c
 LIB_PATH = libft
 
 # Unchanged variables
@@ -67,7 +67,7 @@ re: fclean all
 
 $(NAME): $(OBJ) | $(OBJ_PATH)
 	$(CC) $^ $(LDFLAGS) $(LDLIBS) -o $@
-	mv -f -t $| $^
+	mv -f -t $| $^ 2> /dev/null | true
 
 $(LDLIBS):
 	$(MAKE) -C $(LIB_PATH)
